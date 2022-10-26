@@ -16,14 +16,14 @@ class postModel
             return "La sentencia no se pudo ejecutar";
         }
     }
-    static public function agregarProfesores()
+    static public function agregarProfesores($id, $nombre, $apellido, $correo, $edad)
     {
-        $sql = "SELECT * FROM profesores";
+        $sql = "INSERT INTO `profesores` (`id_profesor`, `nombre_profesor`, `apellido_profesor`, `correo_profesor`, `edad_profesor`) 
+        VALUES ('".$id."', '".$nombre."', '".$apellido."', '".$correo."', '".$edad."');";
         $stmt = Conexion::conectar()->prepare($sql);
         if($stmt->execute())
         {
-            $results = $stmt-> fetchAll(PDO::FETCH_OBJ);
-            return $results;
+            return "Agrego todo corrrectamente";
         }
         else{
             return "La sentencia no se pudo ejecutar";
